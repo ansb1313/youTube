@@ -207,7 +207,7 @@ export const classification = (data) => {
             return item
         }).join(' ')
 
-        return <div class='wrap'><p key={i} dangerouslySetInnerHTML={{__html:text}}/></div>
+        return <div className='wrap' key={i}><p dangerouslySetInnerHTML={{__html:text}}/></div>
     })
 
     return text

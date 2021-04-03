@@ -5,9 +5,10 @@ import {dateFromNow, DetailRelatedViewCount, setPlayTime,} from "../../../lib/Co
 import ThumbnailMouseOver from "../Effect/ThumbnailMouseOver";
 import {VerticalThreeDot} from "../../../icons/icons";
 import ThumbnailMenus from "../Effect/ThumbnailMenu";
+import {useLocation} from "react-router-dom";
+import {navigateReplace} from "../../../lib/History";
 
 const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => {
-
 
     if(!relatedVideoData) return '...Loading'
     return(
@@ -20,7 +21,7 @@ const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => 
                             item?.snippet?.thumbnails?.standard?.url &&
                           <ThumbnailMouseOver key={i}>
                             <RelatedContents
-                                             onClick={()=>{window.location.replace(`/#/watch?v=${item?.id?.videoId}`)}}
+                                             onClick={()=>{window.location.replace(`#/watch?v=${item?.id?.videoId}`)}}
                             >
                                 <RelatedVideoThumb>
                                     <img src={item?.snippet?.thumbnails?.standard?.url} alt=""/>
