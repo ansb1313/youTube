@@ -28,11 +28,11 @@ const SearchBox = ({mobileSize}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        history.push(`/results?${qsValue}`)
+        window.location.replace(`/#/results?${qsValue}`)
     }
     const onClick = (e) => {
         e.preventDefault()
-        history.push(`/results?${qsValue}`)
+        window.location.replace(`/#/results?${qsValue}`)
     }
     const onFocus = () => {
         setFocus(true)

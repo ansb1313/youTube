@@ -5,14 +5,14 @@ import {dateFromNow, setPlayTime, viewCountCommaMark} from "../../../lib/Common"
 import cn from "classnames";
 import {VerticalThreeDot, VideoThumbnailClockIcon, VideoThumbnailStorageIcon} from "../../../icons/icons";
 import VideoItemThumbnailMenu from "../Effect/VideoItemThumbnailMenu";
-import {useHistory} from "react-router-dom";
+// import {useHistory} from "react-router-dom";
 
 const SearchVideoItem = ({newMark, data}) => {
 
     const [thumbnailMenu, setThumbnailMenu] = useState(false)
-    const history = useHistory();
+    // const history = useHistory();
     const onClick = () => {
-        history.push(`/watch?v=${data?.id?.videoId}`)
+        window.location.replace(`/#/watch?v=${data?.id?.videoId}`)
     }
 
     return(

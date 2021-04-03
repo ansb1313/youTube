@@ -8,7 +8,6 @@ import ThumbnailMenus from "../Effect/ThumbnailMenu";
 
 const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => {
 
-
     if(!relatedVideoData) return '...Loading'
     return(
         <InfiniteScroll getMoreItems={getMoreRelatedVideo}>
@@ -20,7 +19,7 @@ const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => 
                             item?.snippet?.thumbnails?.standard?.url &&
                           <ThumbnailMouseOver key={i}>
                             <RelatedContents
-                                             onClick={()=>{window.location.replace(`/watch?v=${item?.id?.videoId}`)}}
+                                             onClick={()=>{window.location.replace(`/#/watch?v=${item?.id?.videoId}`)}}
                             >
                                 <RelatedVideoThumb>
                                     <img src={item?.snippet?.thumbnails?.standard?.url} alt=""/>
