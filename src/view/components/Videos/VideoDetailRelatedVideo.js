@@ -8,6 +8,7 @@ import ThumbnailMenus from "../Effect/ThumbnailMenu";
 
 const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => {
 
+
     if(!relatedVideoData) return '...Loading'
     return(
         <InfiniteScroll getMoreItems={getMoreRelatedVideo}>
@@ -54,7 +55,7 @@ const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => 
                 }
             </RelatedVideos>
 
-        </Container>
+            </Container>
         </InfiniteScroll>
     )
 

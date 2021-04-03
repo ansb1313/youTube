@@ -237,7 +237,7 @@ const PlayTime = styled.div`
   font-size: 12px;
   display: flex;
   font-weight: bold;
-  padding:0px 4px 2px 3px!important;
+  padding:0px 4px 1px 3px!important;
   transition: all 0.3s;
   align-items: center;
   opacity: 1;
