@@ -32,7 +32,7 @@ const VideoItem = (props) => {
 
     const onClick = (e) => {
         e.stopPropagation()
-        window.location.replace(`/watch?${qsValue}`)
+        window.location.replace(`/#/watch?${qsValue}`)
 
     }
 
