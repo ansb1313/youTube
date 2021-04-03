@@ -1,6 +1,6 @@
 import {createActions, createReducer} from "reduxsauce";
 
-const initialState = {
+export const initialState = {
     isLoading: false,
     searchResults:{
         items: {
@@ -22,7 +22,7 @@ const initialState = {
 
 export const Action = createActions({
     updateState:['props'],
-    getSearchData:['data'],
+    getSearchData:['data', 'reset'],
     getMoreSearchData:['data']
 },{
     prefix:'SEARCH/'

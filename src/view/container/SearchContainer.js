@@ -17,16 +17,21 @@ const SearchContainer = ({}) => {
     let query = params.search_query
 
     useEffect(() => {
-        getSearchData()
+        getSearchData(true)
+        window.scroll(0, 0)
+    }, [query])
+
+    useEffect(() => {
+        getSearchData(false)
     }, [moreVideo])
 
-    const getSearchData = () => {
+    const getSearchData = (reset) => {
         searchActions.getSearchData({
             part: 'snippet',
             q: params.search_query,
             maxResults: 10,
             pageToken: searchResults?.nextPageToken
-        })
+        }, reset)
     }
 
     const getMoreVideo = () => {

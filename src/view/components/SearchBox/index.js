@@ -5,12 +5,15 @@ import qs from 'qs'
 import {Mike, SearchIcon} from "../../../icons/icons";
 import {useWindowDimensions} from "../../../hooks/useWindowDimensions";
 import RippleEffect from "../Effect/RippleEffect";
+import {navigate} from "../../../lib/History";
+import {useHistory} from "react-router-dom";
 
 
 
 const SearchBox = ({mobileSize}) => {
 
     const {width} = useWindowDimensions()
+    const history = useHistory()
 
     const unit = (width / 100)
 
@@ -25,11 +28,11 @@ const SearchBox = ({mobileSize}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        window.location.replace(`/results?${qsValue}`)
+        history.push(`/results?${qsValue}`)
     }
     const onClick = (e) => {
         e.preventDefault()
-        window.location.replace(`/results?${qsValue}`)
+        history.push(`/results?${qsValue}`)
     }
     const onFocus = () => {
         setFocus(true)

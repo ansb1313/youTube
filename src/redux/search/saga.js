@@ -1,5 +1,5 @@
 import {all, call, takeLatest, put, select} from "redux-saga/effects";
-import {Action} from "./redux";
+import {Action, initialState} from "./redux";
 import dayjs from "dayjs";
 import API from "../../api";
 import _ from 'lodash'
@@ -7,10 +7,10 @@ import _ from 'lodash'
 
 function* saga(){
     yield all([
-        takeLatest(Action.Types.GET_SEARCH_DATA,function* ({data}){
+        takeLatest(Action.Types.GET_SEARCH_DATA,function* ({data, reset}){
             yield put(Action.Creators.updateState({isLoading:true}))
 
-            const prevList = yield select(state => state.search.searchResults)
+            const prevList = reset ? initialState.searchResults : yield select(state => state.search.searchResults);
             const result = yield call(API.getSearchData,data);
 
             const channelArr = result?.items?.filter((item) => item?.id?.kind == "youtube#channel" );
@@ -47,8 +47,8 @@ function* saga(){
 
             let date = dayjs()
 
-            const newVideoData = result.items.filter((item) => date.diff(item?.snippet?.publishedAt,'hour')<48)
-            const relatedVideoData = result.items.filter((item) => date.diff(item?.snippet?.publishedAt,'hour')>48)
+            const newVideoData = result.items.filter((item) => date.diff(item?.snippet?.publishedAt,'hour')<=36)
+            const relatedVideoData = result.items.filter((item) => date.diff(item?.snippet?.publishedAt,'hour')>36)
 
             result.items= {newVideoData:newVideoData, relatedVideoData:relatedVideoData}
 
