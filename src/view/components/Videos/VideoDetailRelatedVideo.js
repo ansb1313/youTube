@@ -1,14 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import styled from 'styled-components';
+import qs from 'qs'
 import InfiniteScroll from "../InfiniteScroll";
 import {dateFromNow, DetailRelatedViewCount, setPlayTime,} from "../../../lib/Common";
 import ThumbnailMouseOver from "../Effect/ThumbnailMouseOver";
 import {VerticalThreeDot} from "../../../icons/icons";
 import ThumbnailMenus from "../Effect/ThumbnailMenu";
-import {useLocation} from "react-router-dom";
-import {navigateReplace} from "../../../lib/History";
+import {navigate} from "../../../lib/History";
+// import {useLocation} from "react-router-dom";
 
 const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => {
+
+    // const location = useLocation()
+    // const qsValue = qs.parse(location.search,{ignoreQueryPrefix: true})
+    // useEffect(()=>{
+    // },[qsValue.v])
+    //
+    // const reload = useCallback(()=>{
+    //    location.reload()
+    // },[qsValue.v])
 
     if(!relatedVideoData) return '...Loading'
     return(
@@ -21,7 +31,7 @@ const VideoDetailRelatedVideo = ({relatedVideoData=[], getMoreRelatedVideo}) => 
                             item?.snippet?.thumbnails?.standard?.url &&
                           <ThumbnailMouseOver key={i}>
                             <RelatedContents
-                                             onClick={()=>{window.location.replace(`#/watch?v=${item?.id?.videoId}`)}}
+                                             onClick={()=>{navigate(`/watch?v=${item?.id?.videoId}`); window.location.reload(true); }}
                             >
                                 <RelatedVideoThumb>
                                     <img src={item?.snippet?.thumbnails?.standard?.url} alt=""/>
