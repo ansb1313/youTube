@@ -13,7 +13,6 @@ import {useHistory} from "react-router-dom";
 const SearchBox = ({mobileSize}) => {
 
     const {width} = useWindowDimensions()
-    const history = useHistory()
 
     const unit = (width / 100)
 
