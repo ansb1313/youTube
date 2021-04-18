@@ -1,34 +1,28 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useSelector} from "react-redux";
+import React from "react";
+import { useEffect } from "react";
+import styled from "styled-components";
+import { useOnViewport } from "../hooks/useOnViewport";
 
-const pp = (options) => {
+const Infinite = ({ children, getMoreItems = () => {} }) => {
+    const [sentinelRef, inView] = useOnViewport({
+        rootmargin: "300px",
+    });
 
-    let ref;
-    ref = useRef(null);
-    const [inView, setInView] = useState(false)
-    const {isLoading} = useSelector(state => state.videos)
     useEffect(() => {
-        if(isLoading) return;
-        const io = new IntersectionObserver((entries)=>{
-            entries.forEach((entry) => {
-                if(entry.isIntersecting){
-                    setInView(true)
-                }else{
-                    setInView(false)
-                }
-            })
-        },options)
-
-        if(ref.current){
-            io.observe(ref.current)
+        if (inView) {
+            getMoreItems();
         }
-        return () => {
-            if(ref.current){}
-            io.unobserve(ref.current)
-        }
-    },[ref])
+    }, [inView]);
 
-    return [ref, inView]
-}
+    return (
+        <Container>
+            {children}
+            <Sentinel ref={sentinelRef} />
+        </Container>
+    );
+};
 
-export default pp;
+const Container = styled.div``;
+const Sentinel = styled.div``;
+
+export default Infinite;

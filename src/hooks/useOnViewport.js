@@ -9,6 +9,13 @@ export const useOnViewport = (options) => {
     useEffect(() => {
         if (isLoading) return;
         const io = new IntersectionObserver((entries) => {
+            //   entry.boundingClientRect
+            //   entry.intersectionRatio
+            //   entry.intersectionRect
+            //   entry.isIntersecting
+            //   entry.rootBounds
+            //   entry.target
+            //   entry.time
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     setInView(true);
