@@ -11,7 +11,7 @@ const VideoPlayer = ({ videoData }) => {
                 <div className={"videoPlayer"} dangerouslySetInnerHTML={{ __html: videoData?.items[0]?.player?.embedHtml }}></div>
             </VideoBox>
             <Title>
-                <span>{videoDetailtags(videoData?.items[0]?.snippet?.description)}</span>
+                {/* <span>{videoDetailtags(videoData?.items[0]?.snippet?.description)}</span> */}
                 <h1>{videoData?.items[0]?.snippet?.title}</h1>
             </Title>
             <Items>

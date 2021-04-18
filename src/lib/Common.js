@@ -219,11 +219,10 @@ export const classification = (data) => {
 export const videoDetailtags = (data) => {
     if (!data) return null;
     const dataArr = data.split(" ");
-    const text = dataArr.filter((item) => {
-        if (item.indexOf("#") !== -1) {
-            return `<a href="https://www.youtube.com/hashtag/${item}">${item}</a>`;
-        }
+    const text = dataArr.filter((item) => item.indexOf("#") !== -1);
+    const tags = text.map((item) => {
+        return `<a href="https://www.youtube.com/hashtag/${item}">${item}</a>`;
     });
 
-    return text.join(" ");
+    return tags.join(" ");
 };
