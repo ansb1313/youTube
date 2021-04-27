@@ -1,28 +1,45 @@
-import React from "react";
-import { useEffect } from "react";
-import styled from "styled-components";
-import { useOnViewport } from "../hooks/useOnViewport";
+import axios from "axios";
+import { API_BASE_URL, API_KEY } from "../constants/Consts";
 
-const Infinite = ({ children, getMoreItems = () => {} }) => {
-    const [sentinelRef, inView] = useOnViewport({
-        rootmargin: "300px",
-    });
-
-    useEffect(() => {
-        if (inView) {
-            getMoreItems();
-        }
-    }, [inView]);
-
-    return (
-        <Container>
-            {children}
-            <Sentinel ref={sentinelRef} />
-        </Container>
-    );
+const FetchConts = {
+    GET: "get",
 };
 
-const Container = styled.div``;
-const Sentinel = styled.div``;
+const axiosInstance = axios.create({
+    baseURL: API_BASE_URL,
+    timeout: 6000,
+});
 
-export default Infinite;
+const request = async (method, url, data = {}) => {
+    try {
+        const config = {
+            url,
+            method,
+        };
+        if (method === FetchConts.GET) {
+            config.params = {
+                key: API_KEY,
+                ...data,
+            };
+        } else {
+            config.data = {
+                key: API_KEY,
+                ...data,
+            };
+        }
+
+        const result = await axiosInstance(config);
+
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        console.log("e", e);
+    }
+};
+
+const FetchJson = {
+    get: (url, data) => request(FetchConts.GET, url, data),
+};
+
+export { FetchJson };

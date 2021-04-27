@@ -42,7 +42,7 @@ const request = async (method, url, data = {}) => {
             return result?.data;
         }
     } catch (e) {
-        console.log("@@ e", e);
+        console.log("error", e);
     } finally {
     }
 };

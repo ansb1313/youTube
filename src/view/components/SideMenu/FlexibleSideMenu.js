@@ -1,37 +1,26 @@
-import React,{useEffect} from 'react'
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import styled from "styled-components";
 import TextSideMenu from "./TextSideMenu";
 import IconSideMenu from "./IconSideMenu";
-import {useSelector} from "react-redux";
-import {appActions} from "../../../redux/ActionCreators";
+import { useSelector } from "react-redux";
+import { appActions } from "../../../redux/ActionCreators";
 
 const FlexibleSideMenu = () => {
+    const { sidebar } = useSelector((state) => state.app);
 
-    const {sidebar} = useSelector(state => state.app)
-
-    useEffect(()=>{
-        return ()=>{
+    useEffect(() => {
+        return () => {
             appActions.updateState({
-                sidebar:false
-            })
-        }
-    },[])
+                sidebar: false,
+            });
+        };
+    }, []);
 
-    return (
-        <Container className={'sideMenuContainer'}>
-            {
-                sidebar
-                    ?
-                    <IconSideMenu/>
-                    :
-                    <TextSideMenu/>
-            }
-        </Container>
-    )
-}
+    return <Container className={"sideMenuContainer"}>{sidebar ? <IconSideMenu /> : <TextSideMenu />}</Container>;
+};
 
 const Container = styled.div`
-    position:fixed;
+    position: fixed;
     width: 238px;
     top: 56px;
     bottom: 0;
@@ -40,15 +29,15 @@ const Container = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     &:hover {
-      &::-webkit-scrollbar-thumb {
-        background: #d4d4d4;
-      }
+        &::-webkit-scrollbar-thumb {
+            background: #d4d4d4;
+        }
     }
     &::-webkit-scrollbar {
-      width: 8px;
+        width: 8px;
     }
     &::-webkit-scrollbar-thumb {
-      background: #fff;
+        background: #fff;
     }
 `;
 
